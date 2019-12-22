@@ -7,7 +7,10 @@ const sid = new SID("basterds-game");
 export const sessionReceiver = (ctx : any) => {
 
     ctx.body = {
-        sessid: "some sessid",
-        pid: "somepid"
+        is_succeed: true,
+        data: {
+            sessid: "some sessid",
+            pid: "somepid"
+        }
     }
 };
