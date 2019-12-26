@@ -14,5 +14,6 @@ const sequelize = new Sequelize('basterds', config.id, config.pw, {
 const user = User(sequelize);
 const match = Match(sequelize);
 const object = Object(sequelize);
+const action = Action(sequelize);
 
-export default { sequelize, Sequelize, user, match, object };
+export { sequelize, Sequelize, user, match, object, action };
