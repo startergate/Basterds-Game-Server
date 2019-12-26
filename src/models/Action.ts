@@ -63,6 +63,6 @@ export const Action = (sequelize: Sequelize) => {
         },
     }, {
         timestamps: false,
-        tableName: "api_object"
+        tableName: "api_action"
     });
 };
