@@ -17,7 +17,7 @@ export const User = (sequelize: Sequelize) => {
         },
         id: {
             type: DataTypes.CHAR(20),
-            allowNull: true,
+            allowNull: false,
             unique: true
         }
     }, {
