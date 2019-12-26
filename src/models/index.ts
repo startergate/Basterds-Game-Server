@@ -3,6 +3,7 @@ const config = require('modules/dbInfo');
 
 import { User } from "./User"
 import { Match } from "./Match"
+import { Object } from "./Object";
 
 const sequelize = new Sequelize('basterds', config.id, config.pw, {
     host: config.host,
@@ -11,5 +12,6 @@ const sequelize = new Sequelize('basterds', config.id, config.pw, {
 
 const user = User(sequelize);
 const match = Match(sequelize);
+const object = Object(sequelize);
 
-export default {sequelize, Sequelize, user, match};
+export default { sequelize, Sequelize, user, match, object };
