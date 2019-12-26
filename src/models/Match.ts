@@ -18,7 +18,8 @@ export const Match = (sequelize: Sequelize) => {
         },
         pid: {
             type: DataTypes.CHAR(32),
-            references: {model: "User", key: 'pid'}
+            references: {model: "User", key: 'pid'},
+            allowNull: false
         },
         played_as: {
             type: DataTypes.CHAR(12),
@@ -63,6 +64,15 @@ export const Match = (sequelize: Sequelize) => {
         heal: {
             type: DataTypes.BIGINT,
             allowNull: false
+        },
+        created_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
+        },
+        terminated_at: {
+            type: DataTypes.DATE,
+            allowNull: true
         }
     }, {
         timestamps: false,
