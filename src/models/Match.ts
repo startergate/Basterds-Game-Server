@@ -1,8 +1,20 @@
 import { Sequelize, DataTypes, Model, BuildOptions } from "sequelize";
 
 interface MatchModel extends Model {
+    readonly matchid: bigint;
     readonly pid: string;
-    readonly id: string;
+    readonly played_as: string;
+    readonly status: string;
+    readonly score: bigint;
+    readonly playtime: Date;
+    readonly turn_count: number;
+    readonly spawned_alias: number;
+    readonly killed_alias: number;
+    readonly killed_hostiles: number;
+    readonly damage: bigint;
+    readonly heal: bigint;
+    readonly created_at: Date;
+    readonly terminated_at: Date;
 }
 
 type MatchModelStatic = typeof Model & {
@@ -12,7 +24,7 @@ type MatchModelStatic = typeof Model & {
 export const Match = (sequelize: Sequelize) => {
     return <MatchModelStatic>sequelize.define("User", {
         matchid: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.BIGINT,
             autoIncrement: true,
             primaryKey: true
         },
@@ -42,19 +54,19 @@ export const Match = (sequelize: Sequelize) => {
             allowNull: false
         },
         turn_count: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         spawned_alias: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         killed_alias: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         killed_hostiles: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         damage: {
