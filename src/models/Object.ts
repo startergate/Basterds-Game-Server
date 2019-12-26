@@ -19,7 +19,7 @@ export const Object = (sequelize: Sequelize) => {
         },
         matchid: {
             type: DataTypes.CHAR(32),
-            allowNull: true,
+            allowNull: false,
             unique: true,
         },
         belong_to: {
@@ -31,6 +31,10 @@ export const Object = (sequelize: Sequelize) => {
             type: DataTypes.CHAR(6),
             values: ["unborn", "alive", "stun", "dead", "done"],
             allowNull: false
+        },
+        faction: {
+            type: DataTypes.CHAR(12),
+            values: ["insomnia", "orangefamily", "overhit", "meisterboi"]
         },
         job: {
             type: DataTypes.CHAR(8),
