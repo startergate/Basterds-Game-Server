@@ -4,6 +4,7 @@ const config = require('modules/dbInfo');
 import { User } from "./User"
 import { Match } from "./Match"
 import { Object } from "./Object";
+import { Action } from "./Action";
 
 const sequelize = new Sequelize('basterds', config.id, config.pw, {
     host: config.host,
