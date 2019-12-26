@@ -12,11 +12,11 @@ type UserModelStatic = typeof Model & {
 export const User = (sequelize: Sequelize) => {
     return <UserModelStatic>sequelize.define("User", {
         pid: {
-            type: DataTypes.CHAR(64),
+            type: DataTypes.CHAR(32),
             primaryKey: true
         },
         id: {
-            type: DataTypes.CHAR(64),
+            type: DataTypes.CHAR(20),
             allowNull: true,
             unique: true
         }
