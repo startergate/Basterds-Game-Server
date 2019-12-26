@@ -2,8 +2,14 @@ import { Sequelize, DataTypes, Model, BuildOptions } from "sequelize";
 import { User } from "./User"
 
 interface ObjectModel extends Model {
-    readonly pid: string;
-    readonly id: string;
+    readonly objectid: bigint;
+    readonly matchid: bigint;
+    readonly belong_to: string;
+    readonly status: string;
+    readonly faction: string;
+    readonly job: string;
+    readonly hp: number;
+    readonly damage: number;
 }
 
 type ObjectModelStatic = typeof Model & {
@@ -13,14 +19,14 @@ type ObjectModelStatic = typeof Model & {
 export const Object = (sequelize: Sequelize) => {
     return <ObjectModelStatic>sequelize.define("User", {
         objectid: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.BIGINT,
             autoIncrement: true,
             primaryKey: true
         },
         matchid: {
-            type: DataTypes.CHAR(32),
+            type: DataTypes.BIGINT,
+            references: {model: "Match", key: 'matchid'},
             allowNull: false,
-            unique: true,
         },
         belong_to: {
             type: DataTypes.CHAR(32),
@@ -42,11 +48,11 @@ export const Object = (sequelize: Sequelize) => {
             allowNull: false
         },
         hp: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         damage: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     }, {
