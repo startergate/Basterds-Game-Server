@@ -2,8 +2,10 @@ import { Sequelize, DataTypes, Model, BuildOptions } from "sequelize";
 
 interface MatchModel extends Model {
     readonly matchid: bigint;
-    readonly pid: string;
-    readonly played_as: string;
+    readonly player1: string;
+    readonly player2: string;
+    readonly played_as1: string;
+    readonly played_as2: string;
     readonly status: string;
     readonly score: bigint;
     readonly playtime: Date;
@@ -28,12 +30,23 @@ export const Match = (sequelize: Sequelize) => {
             autoIncrement: true,
             primaryKey: true
         },
-        pid: {
+        player1: {
             type: DataTypes.CHAR(32),
             references: {model: "User", key: 'pid'},
             allowNull: false
         },
-        played_as: {
+        player2: {
+            type: DataTypes.CHAR(32),
+            references: {model: "User", key: 'pid'},
+            allowNull: false
+        },
+        played_as1: {
+            type: DataTypes.CHAR(12),
+            values: ["insomnia", "orangefamily", "overhit", "meisterboi"],
+            defaultValue: "insomnia",
+            allowNull: false,
+        },
+        played_as2: {
             type: DataTypes.CHAR(12),
             values: ["insomnia", "orangefamily", "overhit", "meisterboi"],
             defaultValue: "insomnia",
