@@ -34,11 +34,16 @@ export const createMatch = async (ctx: Context) => {
 
 export const stopMatch = async (ctx: Context) => {
     const result = await match.findByPk(ctx.params.matchid);
+    if (!result) return ctx.status = 400;
     let status = 'lose';
     if (!ctx.request.body.won)
         status = 'tie';
     else if (result.player1 === ctx.request.body.won)
         status = 'won';
     const playtime = Date.now() - new Date(result.created_at).getTime();
-    ctx.body = await match.update({ status: status, playtime: playtime, terminated_at: Sequelize.fn('NOW') }, { where: { matchid: ctx.params.matchid } })
+    await match.update({ status: status, playtime: playtime, terminated_at: Sequelize.fn('NOW') }, { where: { matchid: ctx.params.matchid } })
+    ctx.body = {
+        is_succeed: true,
+        matchid: ctx.params.matchid
+    }
 };
