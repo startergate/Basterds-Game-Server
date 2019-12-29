@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize"
-const config = require('modules/dbInfo');
+const config = require('../modules/dbInfo');
 
 import { User } from "./User"
 import { Match } from "./Match"

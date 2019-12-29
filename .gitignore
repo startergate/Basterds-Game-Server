@@ -190,3 +190,5 @@ public/
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+
+src/modules/dbInfo.ts
