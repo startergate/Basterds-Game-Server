@@ -4,6 +4,6 @@ import game from './game';
 
 const router = new Router();
 
-router.use('/api', game.routes());
+router.use('/game', game.routes());
 
 export default router;
