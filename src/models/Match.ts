@@ -58,36 +58,64 @@ export const Match = (sequelize: Sequelize) => {
             defaultValue: "pending",
             allowNull: false,
         },
-        score: {
+        score1: {
             type: DataTypes.BIGINT,
+            defaultValue: 0,
+            allowNull: false
+        },
+        score2: {
+            type: DataTypes.BIGINT,
+            defaultValue: 0,
             allowNull: false
         },
         playtime: {
             type: DataTypes.DATE,
+            defaultValue: 0,
             allowNull: false
         },
         turn_count: {
             type: DataTypes.INTEGER,
+            defaultValue: 0,
             allowNull: false
         },
-        spawned_alias: {
+        spawned1: {
             type: DataTypes.INTEGER,
+            defaultValue: 0,
             allowNull: false
         },
-        killed_alias: {
+        killed1: {
             type: DataTypes.INTEGER,
+            defaultValue: 0,
             allowNull: false
         },
-        killed_hostiles: {
+        spawned2: {
             type: DataTypes.INTEGER,
+            defaultValue: 0,
             allowNull: false
         },
-        damage: {
+        killed2: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+            allowNull: false
+        },
+        damage1: {
             type: DataTypes.BIGINT,
+            defaultValue: 0,
             allowNull: false
         },
-        heal: {
+        heal1: {
             type: DataTypes.BIGINT,
+            defaultValue: 0,
+            allowNull: false
+        },
+        damage2: {
+            type: DataTypes.BIGINT,
+            defaultValue: 0,
+            allowNull: false
+        },
+        heal2: {
+            type: DataTypes.BIGINT,
+            defaultValue: 0,
             allowNull: false
         },
         created_at: {
@@ -101,6 +129,6 @@ export const Match = (sequelize: Sequelize) => {
         }
     }, {
         timestamps: false,
-        tableName: "api_match"
+        tableName: "api_match",
     });
 };
