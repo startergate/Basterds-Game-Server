@@ -1,7 +1,7 @@
 import {Context} from 'koa';
 import * as Joi from 'joi';
 
-import {match} from "../../../../models"
+import {match, Sequelize} from "../../../../models"
 
 export const createMatch = async (ctx: Context) => {
     const PlayerReady = Joi.object().keys({
@@ -29,4 +29,16 @@ export const createMatch = async (ctx: Context) => {
         is_succeed: true,
         matchid: result.matchid
     };
+};
+
+
+export const stopMatch = async (ctx: Context) => {
+    const result = await match.findByPk(ctx.params.matchid);
+    let status = 'lose';
+    if (!ctx.request.body.won)
+        status = 'tie';
+    else if (result.player1 === ctx.request.body.won)
+        status = 'won';
+    const playtime = Date.now() - new Date(result.created_at).getTime();
+    ctx.body = await match.update({ status: status, playtime: playtime, terminated_at: Sequelize.fn('NOW') }, { where: { matchid: ctx.params.matchid } })
 };
