@@ -5,13 +5,11 @@ import {match, Sequelize} from "../../../../models"
 
 export const createMatch = async (ctx: Context) => {
     const PlayerReady = Joi.object().keys({
-        player1: Joi.string().length(32).required(),
-        player2: Joi.string().length(32).required(),
-        played_as1: Joi.string().valid('insomnia', 'orangefamily', 'overhit', 'meisterboi'),
-        played_as2: Joi.string().valid('insomnia', 'orangefamily', 'overhit', 'meisterboi')
+        player: Joi.string().length(32).required(),
+        played_as: Joi.string().valid('insomnia', 'orangefamily', 'overhit', 'meisterboi'),
     });
 
-    if (Joi.validate(ctx.request.body, PlayerReady)) {
+    if (Joi.validate(ctx.request.body, PlayerReady).error) {
         ctx.body = {
             is_succeed: false
         };
@@ -19,10 +17,8 @@ export const createMatch = async (ctx: Context) => {
     }
 
     const result = await match.create({
-        player1: ctx.request.body.player1,
-        player2: ctx.request.body.player2,
-        played_as1: ctx.request.body.played_as1,
-        played_as2: ctx.request.body.played_as2
+        player: ctx.request.body.player,
+        played_as: ctx.request.body.played_as
     });
 
     ctx.body = {
