@@ -36,6 +36,7 @@ export const Object = (sequelize: Sequelize) => {
         status: {
             type: DataTypes.CHAR(6),
             values: ["unborn", "alive", "stun", "dead", "done"],
+            defaultValue: "unborn",
             allowNull: false
         },
         faction: {
@@ -49,11 +50,13 @@ export const Object = (sequelize: Sequelize) => {
         },
         hp: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 100
         },
         damage: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 100
         }
     }, {
         timestamps: false,
