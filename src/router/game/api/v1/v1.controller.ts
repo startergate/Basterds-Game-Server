@@ -34,7 +34,7 @@ export const stopMatch = async (ctx: Context) => {
     let status = 'lose';
     if (!ctx.request.body.won)
         status = 'tie';
-    else if (result.player1 === ctx.request.body.won)
+    else if (result.player === ctx.request.body.won)
         status = 'won';
     const playtime = Date.now() - new Date(result.created_at).getTime();
     await match.update({ status: status, playtime: playtime, terminated_at: Sequelize.fn('NOW') }, { where: { matchid: ctx.params.matchid } })
