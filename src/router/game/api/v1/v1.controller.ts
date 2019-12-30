@@ -62,3 +62,12 @@ export const spawnObject = async (ctx: Context) => {
         raw: result
     }
 };
+
+export const killObject = async (ctx: Context) => {
+    const result = await match.update({
+        killed: Sequelize.literal('killed + 1')
+    }, {
+        where: { matchid: ctx.params.matchid }
+    });
+    ctx.body = { is_succeed: true, raw: result }
+};

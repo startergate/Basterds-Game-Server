@@ -7,5 +7,6 @@ const v1 = new Router();
 v1.post('/match', createMatch);
 v1.delete('/match/:matchid', stopMatch);
 v1.post('/match/:matchid/spawn', spawnObject);
+v1.delete('/match/:matchid/kill', killObject);
 
 export default v1;
