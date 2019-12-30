@@ -48,18 +48,23 @@ export const spawnObject = async (ctx: Context) => {
     const matchObject = await match.findByPk(ctx.params.matchid);
 
     let faction = matchObject.played_as;
-    const result = await object.create({
+    const promise1 = object.create({
         matchid: ctx.params.matchid,
         belong_to: ctx.request.body.belong_to,
         status: "alive",
         faction: faction,
         job: ctx.request.body.job
+    });
 
+    const promise2 = match.update({
+        spawned: Sequelize.literal('spawned + 1')
+    }, {
+        where: { matchid: ctx.params.matchid }
     });
 
     ctx.body = {
         is_succeed: true,
-        raw: result
+        raw: await Promise.all([promise1, promise2])
     }
 };
 
