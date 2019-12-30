@@ -1,7 +1,7 @@
 import {Context} from 'koa';
 import * as Joi from 'joi';
 
-import {match, Sequelize} from "../../../../models"
+import {match, object, Sequelize} from "../../../../models"
 
 export const createMatch = async (ctx: Context) => {
     const PlayerReady = Joi.object().keys({
@@ -41,5 +41,24 @@ export const stopMatch = async (ctx: Context) => {
     ctx.body = {
         is_succeed: true,
         matchid: ctx.params.matchid
+    }
+};
+
+export const spawnObject = async (ctx: Context) => {
+    const matchObject = await match.findByPk(ctx.params.matchid);
+
+    let faction = matchObject.played_as;
+    const result = await object.create({
+        matchid: ctx.params.matchid,
+        belong_to: ctx.request.body.belong_to,
+        status: "alive",
+        faction: faction,
+        job: ctx.request.body.job
+
+    });
+
+    ctx.body = {
+        is_succeed: true,
+        raw: result
     }
 };
