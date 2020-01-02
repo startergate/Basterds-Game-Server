@@ -59,7 +59,7 @@ export const stopMatch = async (ctx: Context) => {
     ctx.body = {
         is_succeed: true,
         matchid: ctx.params.matchid
-    }
+    };
 };
 
 export const spawnObject = async (ctx: Context) => {
@@ -96,7 +96,7 @@ export const spawnObject = async (ctx: Context) => {
     ctx.body = {
         is_succeed: true,
         raw: await Promise.all([promise1, promise2])
-    }
+    };
 };
 
 export const killObject = async (ctx: Context) => {
@@ -105,7 +105,7 @@ export const killObject = async (ctx: Context) => {
     }, {
         where: { matchid: ctx.params.matchid }
     });
-    ctx.body = { is_succeed: true, raw: result }
+    ctx.body = { is_succeed: true, raw: result };
 };
 
 export const attackObject = async (ctx: Context) => {
