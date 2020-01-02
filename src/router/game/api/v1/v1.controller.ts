@@ -107,3 +107,12 @@ export const killObject = async (ctx: Context) => {
     });
     ctx.body = { is_succeed: true, raw: result }
 };
+
+export const attackObject = async (ctx: Context) => {
+    const result = await match.update({
+        damage: Sequelize.literal(`damage + ${ctx.request.body.damage}`)
+    }, {
+        where: { matchid: ctx.params.matchid }
+    });
+    ctx.body = { is_succeed: true, raw: result };
+};
