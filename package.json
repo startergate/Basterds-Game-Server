@@ -4,10 +4,11 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_PATH=./src pm2 start dist",
+    "start": "cross-env NODE_PATH=./src pm2 start dist --watch",
     "clear": "rimraf dist",
     "build": "tsc",
-    "dev": "cross-env NODE_PATH=./src nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/index.ts"
+    "dev": "cross-env NODE_PATH=./src nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/index.ts",
+    "kill": "pm2 kill"
   },
   "dependencies": {
     "@startergate/sidts": "^0.0.7",
