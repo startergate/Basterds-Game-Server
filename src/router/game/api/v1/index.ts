@@ -1,6 +1,6 @@
 import * as Router from 'koa-router';
 
-import {createMatch, attackObject, killObject, spawnObject, stopMatch} from "./v1.controller";
+import { createMatch, attackObject, killObject, spawnObject, stopMatch } from './v1.controller';
 
 const v1 = new Router();
 

@@ -1,7 +1,7 @@
 import {Context} from 'koa';
 import * as Joi from 'joi';
 
-import {match, object, Sequelize} from "../../../../models"
+import { match, object, Sequelize } from '../../../../models';
 
 export const createMatch = async (ctx: Context) => {
     const PlayerReady = Joi.object().keys({
@@ -65,7 +65,7 @@ export const stopMatch = async (ctx: Context) => {
 export const spawnObject = async (ctx: Context) => {
     const PlayerReady = Joi.object().keys({
         belong_to: Joi.string().length(32).required(),
-        job: Joi.string().valid("leader", "basic", "advanced", "expert"),
+        job: Joi.string().valid('leader', 'basic', 'advanced', 'expert'),
     });
 
     if (Joi.validate(ctx.request.body, PlayerReady).error) {

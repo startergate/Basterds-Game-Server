@@ -1,5 +1,5 @@
-import { Sequelize, DataTypes, Model, BuildOptions } from "sequelize";
-import { User } from "./User"
+import { Sequelize, DataTypes, Model, BuildOptions } from 'sequelize';
+import { User } from './User'
 
 interface ActionModel extends Model {
     readonly actionid: bigint;
@@ -18,7 +18,7 @@ type ActionModelStatic = typeof Model & {
 }
 
 export const Action = (sequelize: Sequelize) => {
-    return <ActionModelStatic>sequelize.define("User", {
+    return <ActionModelStatic>sequelize.define('User', {
         actionid: {
             type: DataTypes.BIGINT,
             autoIncrement: true,
@@ -26,27 +26,27 @@ export const Action = (sequelize: Sequelize) => {
         },
         pid: {
             type: DataTypes.CHAR(32),
-            references: {model: "User", key: 'pid'},
+            references: {model: 'User', key: 'pid'},
             allowNull: false
         },
         matchid: {
             type: DataTypes.BIGINT,
-            references: {model: "Match", key: 'matchid'},
+            references: {model: 'Match', key: 'matchid'},
             allowNull: false,
         },
         type: {
             type: DataTypes.CHAR(10),
-            values: ["spawn", "move", "attack", "moveattack", "die"],
+            values: ['spawn', 'move', 'attack', 'moveattack', 'die'],
             allowNull: false
         },
         origin: {
             type: DataTypes.BIGINT,
-            references: {model: "Object", key: 'objectid'},
+            references: {model: 'Object', key: 'objectid'},
             allowNull: false,
         },
         to: {
             type: DataTypes.BIGINT,
-            references: {model: "Object", key: 'objectid'},
+            references: {model: 'Object', key: 'objectid'},
             allowNull: true,
         },
         destination_x: {
@@ -63,6 +63,6 @@ export const Action = (sequelize: Sequelize) => {
         },
     }, {
         timestamps: false,
-        tableName: "api_action"
+        tableName: 'api_action'
     });
 };

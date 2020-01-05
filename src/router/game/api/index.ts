@@ -1,6 +1,6 @@
 import * as Router from 'koa-router';
-import auth from "./auth";
-import v1 from "./v1"
+import auth from './auth';
+import v1 from './v1';
 
 const api = new Router();
 

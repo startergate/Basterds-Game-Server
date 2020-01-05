@@ -1,14 +1,14 @@
-import { Sequelize } from "sequelize"
-const config = require('../modules/dbInfo');
+import { Sequelize } from 'sequelize';
+import * as config from '../modules/dbInfo';
 
-import { User } from "./User"
-import { Match } from "./Match"
-import { Object } from "./Object";
-import { Action } from "./Action";
+import { User } from './User';
+import { Match } from './Match';
+import { Object } from './Object';
+import { Action } from './Action';
 
 const sequelize = new Sequelize('basterds', config.id, config.pw, {
     host: config.host,
-    dialect: "mysql"
+    dialect: 'mysql'
 });
 
 const user = User(sequelize);
