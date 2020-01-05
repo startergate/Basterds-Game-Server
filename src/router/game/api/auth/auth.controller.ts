@@ -1,9 +1,10 @@
 import SID from "@startergate/sidts"
 import * as Joi from "joi"
+import { Context } from 'koa';
 
 const sid = new SID("basterds-game");
 
-export const sessionReceiver = async (ctx : any) => {
+export const sessionReceiver = async (ctx: Context) => {
     const request = Joi.object().keys({
         id: Joi.string().required(),
         pw: Joi.string().required(),
