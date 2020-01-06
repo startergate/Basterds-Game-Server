@@ -1,10 +1,13 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import * as bodyParser from 'koa-bodyparser';
+import * as logger from 'koa-logger';
 
 import appRouter from './router';
 
 const app = new Koa();
+app.use(logger());
+
 const router = new Router();
 
 const port = process.env.PORT || 5000;
