@@ -30,7 +30,7 @@ export const createMatch = async (ctx: Context) => {
 
 export const stopMatch = async (ctx: Context) => {
     const PlayerOkay = Joi.object().keys({
-        won: Joi.string().length(32).required()
+        won: Joi.string().max(32).required()
     });
 
     console.log(ctx.request.body);
