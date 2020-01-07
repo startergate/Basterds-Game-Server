@@ -33,8 +33,6 @@ export const stopMatch = async (ctx: Context) => {
         won: Joi.string().max(32).required()
     });
 
-    console.log(ctx.request.body);
-
     if (Joi.validate(ctx.request.body, PlayerOkay).error) {
         ctx.body = {
             is_succeed: false
@@ -46,6 +44,8 @@ export const stopMatch = async (ctx: Context) => {
 
     if (!result) return ctx.status = 400;
 
+    let score = 0;
+    
     let status = 'lose';
 
     if (!ctx.request.body.won)
@@ -55,9 +55,12 @@ export const stopMatch = async (ctx: Context) => {
 
     const playtime = Date.now() - new Date(result.created_at).getTime();
 
-    console.log(playtime);
+    score += playtime / 1000;
+    score += result.killed * 70;
+    score += Number(result.damage);
+    score += result.spawned * 15;
 
-    await match.update({ status: status, playtime: playtime, terminated_at: Sequelize.fn('NOW') },
+    await match.update({ score: score, status: status, playtime: playtime, terminated_at: Sequelize.fn('NOW') },
         { where: { matchid: ctx.params.matchid } });
 
     ctx.body = {
