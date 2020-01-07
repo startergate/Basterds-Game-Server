@@ -8,7 +8,7 @@ import {Context} from "koa";
 
 const app = new Koa();
 
-// app.use(logger());
+app.use(logger());
 
 const router = new Router();
 
