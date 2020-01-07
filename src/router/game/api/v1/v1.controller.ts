@@ -45,7 +45,7 @@ export const stopMatch = async (ctx: Context) => {
     if (!result) return ctx.status = 400;
 
     let score = 0;
-    
+
     let status = 'lose';
 
     if (!ctx.request.body.won)
