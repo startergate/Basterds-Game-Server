@@ -55,6 +55,8 @@ export const stopMatch = async (ctx: Context) => {
 
     const playtime = Date.now() - new Date(result.created_at).getTime();
 
+    console.log(playtime);
+
     await match.update({ status: status, playtime: playtime, terminated_at: Sequelize.fn('NOW') },
         { where: { matchid: ctx.params.matchid } });
 
