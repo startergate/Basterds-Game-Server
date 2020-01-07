@@ -33,6 +33,8 @@ export const stopMatch = async (ctx: Context) => {
         won: Joi.string().length(32).required()
     });
 
+    console.log(ctx.request.body);
+
     if (Joi.validate(ctx.request.body, PlayerOkay).error) {
         ctx.body = {
             is_succeed: false
