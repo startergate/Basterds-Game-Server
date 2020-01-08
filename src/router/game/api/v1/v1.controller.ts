@@ -60,6 +60,8 @@ export const stopMatch = async (ctx: Context) => {
     score += Number(result.damage);
     score += result.spawned * 15;
 
+    console.log(score);
+
     await match.update({ score: score, status: status, playtime: playtime, terminated_at: Sequelize.fn('NOW') },
         { where: { matchid: ctx.params.matchid } });
 
